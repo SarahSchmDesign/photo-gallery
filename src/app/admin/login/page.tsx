@@ -30,7 +30,7 @@ export default function AdminLoginPage() {
 
       router.push('/admin');
       router.refresh();
-    } catch (err) {
+    } catch {
       setError('Erreur de connexion au serveur');
     } finally {
       setLoading(false);
@@ -38,8 +38,8 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
-      <div className="w-full max-w-md bg-white border border-stone-200/80 rounded-2xl p-8 shadow-sm space-y-6">
+    <div className="min-h-[70vh] flex items-center justify-center animate-fade-in">
+      <div className="w-full max-w-md bg-white border border-stone-200/80 rounded-2xl p-8 sm:p-10 shadow-sm space-y-6">
         <div className="text-center space-y-2">
           <div className="w-12 h-12 bg-stone-100 rounded-full flex items-center justify-center mx-auto text-stone-900 border border-stone-200">
             <Lock className="w-5 h-5" />
@@ -53,30 +53,31 @@ export default function AdminLoginPage() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 text-xs p-3 rounded-lg text-center">
+          <div className="bg-red-50 border border-red-200 text-red-700 text-xs p-3 rounded-lg text-center animate-scale-in">
             {error}
           </div>
         )}
 
         <form onSubmit={handleLogin} className="space-y-4 text-xs">
           <div>
-            <label className="block text-stone-700 font-medium mb-1.5">
+            <label htmlFor="admin-password" className="block text-stone-700 font-medium mb-1.5">
               Mot de passe administrateur
             </label>
             <input
+              id="admin-password"
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••••••"
-              className="w-full p-3 rounded-lg border border-stone-300 bg-stone-50/50 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+              className="w-full p-3 rounded-lg border border-stone-300 bg-stone-50 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 transition-colors"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3.5 px-4 rounded-lg bg-stone-950 hover:bg-stone-800 text-white font-medium flex items-center justify-center gap-2 transition-all shadow-sm"
+            className="w-full py-3.5 px-4 rounded-xl bg-stone-950 hover:bg-stone-800 text-white font-medium flex items-center justify-center gap-2 transition-[transform,background-color] duration-150 hover:scale-[1.01] active:scale-95 shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2 disabled:opacity-50"
           >
             <span>{loading ? 'Vérification...' : 'Accéder au Back-office'}</span>
             <ArrowRight className="w-4 h-4" />
@@ -84,7 +85,7 @@ export default function AdminLoginPage() {
         </form>
 
         <div className="pt-4 border-t border-stone-100 flex items-center justify-center gap-1.5 text-[11px] text-stone-400">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+          <ShieldCheck className="w-3.5 h-3.5 text-stone-600" />
           <span>Session chiffrée &amp; protection anti-bruteforce</span>
         </div>
       </div>

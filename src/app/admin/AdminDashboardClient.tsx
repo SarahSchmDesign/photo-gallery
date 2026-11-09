@@ -197,11 +197,11 @@ export default function AdminDashboardClient({
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 animate-fade-in">
       {/* Barre supérieure Admin */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-stone-200">
         <div>
-          <span className="text-[11px] uppercase tracking-widest text-blue-600 font-semibold">
+          <span className="text-[11px] uppercase tracking-widest text-stone-500 font-semibold">
             Tableau de Bord
           </span>
           <h1 className="font-editorial text-3xl font-medium text-stone-950">
@@ -210,7 +210,7 @@ export default function AdminDashboardClient({
         </div>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
         >
           <LogOut className="w-3.5 h-3.5" />
           <span>Déconnexion</span>
@@ -221,7 +221,7 @@ export default function AdminDashboardClient({
       <div className="flex flex-wrap gap-2 border-b border-stone-200 pb-2">
         <button
           onClick={() => setActiveTab('photos')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-[background-color,color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 ${
             activeTab === 'photos'
               ? 'bg-stone-900 text-white shadow-sm'
               : 'text-stone-600 hover:bg-stone-100'
@@ -233,7 +233,7 @@ export default function AdminDashboardClient({
 
         <button
           onClick={() => setActiveTab('upload')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-[background-color,color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 ${
             activeTab === 'upload'
               ? 'bg-stone-900 text-white shadow-sm'
               : 'text-stone-600 hover:bg-stone-100'
@@ -245,7 +245,7 @@ export default function AdminDashboardClient({
 
         <button
           onClick={() => setActiveTab('recipes')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-[background-color,color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 ${
             activeTab === 'recipes'
               ? 'bg-stone-900 text-white shadow-sm'
               : 'text-stone-600 hover:bg-stone-100'
@@ -257,7 +257,7 @@ export default function AdminDashboardClient({
 
         <button
           onClick={() => setActiveTab('inquiries')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-all ${
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-[background-color,color] duration-150 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 ${
             activeTab === 'inquiries'
               ? 'bg-stone-900 text-white shadow-sm'
               : 'text-stone-600 hover:bg-stone-100'
@@ -272,10 +272,10 @@ export default function AdminDashboardClient({
       {activeTab === 'photos' && (
         <div className="space-y-6">
           <div className="flex justify-between items-center">
-            <h2 className="font-editorial text-xl font-medium">Catalogue de photographies</h2>
+            <h2 className="font-editorial text-xl font-medium text-stone-950">Catalogue de photographies</h2>
             <button
               onClick={() => setActiveTab('upload')}
-              className="px-3.5 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl bg-stone-950 hover:bg-stone-800 text-white text-xs font-medium flex items-center gap-1.5 transition-[transform,background-color] duration-150 hover:scale-[1.02] active:scale-95 shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-stone-950"
             >
               <Upload className="w-3.5 h-3.5" />
               <span>Ajouter un cliché</span>
@@ -291,7 +291,7 @@ export default function AdminDashboardClient({
                 <div className="relative aspect-[3/2] bg-stone-100 overflow-hidden">
                   <img src={photo.thumbUrl || photo.imageUrl} alt={photo.title} className="w-full h-full object-cover" />
                   {photo.isFeatured && (
-                    <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-amber-400 text-stone-950 font-bold text-[10px] uppercase">
+                    <span className="absolute top-2 left-2 px-2 py-0.5 rounded bg-stone-900 text-white font-semibold text-[10px] tracking-wider uppercase border border-white/20">
                       Coup de cœur
                     </span>
                   )}
@@ -311,15 +311,17 @@ export default function AdminDashboardClient({
                   <div className="flex items-center justify-between pt-2 border-t border-stone-100 text-xs">
                     <button
                       onClick={() => handleToggleFeatured(photo.id, photo.isFeatured)}
-                      className={`flex items-center gap-1 ${photo.isFeatured ? 'text-amber-500 font-semibold' : 'text-stone-400 hover:text-stone-700'}`}
+                      className={`flex items-center gap-1 outline-none focus-visible:ring-1 focus-visible:ring-stone-900 rounded ${
+                        photo.isFeatured ? 'text-stone-900 font-semibold' : 'text-stone-400 hover:text-stone-700'
+                      }`}
                     >
-                      <Star className="w-3.5 h-3.5" />
+                      <Star className={`w-3.5 h-3.5 ${photo.isFeatured ? 'fill-stone-900 text-stone-900' : ''}`} />
                       <span>{photo.isFeatured ? 'Mis en avant' : 'Mettre en avant'}</span>
                     </button>
 
                     <button
                       onClick={() => handleDeletePhoto(photo.id)}
-                      className="text-red-500 hover:text-red-700 p-1"
+                      className="text-stone-400 hover:text-red-600 p-1 transition-colors outline-none focus-visible:ring-1 focus-visible:ring-red-600 rounded"
                       title="Supprimer"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -334,9 +336,9 @@ export default function AdminDashboardClient({
 
       {/* CONTENU ONGLET 2 : UPLOAD + EXIF AUTO */}
       {activeTab === 'upload' && (
-        <div className="max-w-2xl bg-white rounded-xl border border-stone-200 p-6 md:p-8 shadow-sm space-y-6">
+        <div className="max-w-2xl bg-white rounded-2xl border border-stone-200 p-6 md:p-8 shadow-sm space-y-6">
           <div>
-            <h2 className="font-editorial text-2xl font-medium">Téléverser un nouveau cliché</h2>
+            <h2 className="font-editorial text-2xl font-medium text-stone-950">Téléverser un nouveau cliché</h2>
             <p className="text-xs text-stone-500 pt-1">
               Les réglages de prise de vue (boîtier, optique, f/, vitesse, ISO) sont extraits automatiquement dès que vous déposez votre photo.
             </p>
@@ -352,7 +354,7 @@ export default function AdminDashboardClient({
                   handleFileSelect(e.dataTransfer.files[0]);
                 }
               }}
-              className="border-2 border-dashed border-stone-300 hover:border-blue-500 rounded-xl p-8 text-center bg-stone-50/50 cursor-pointer transition-colors"
+              className="border-2 border-dashed border-stone-300 hover:border-stone-900 rounded-xl p-8 text-center bg-stone-50/50 cursor-pointer transition-colors outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
               onClick={() => document.getElementById('photoInputFile')?.click()}
             >
               <input
@@ -369,7 +371,7 @@ export default function AdminDashboardClient({
               {previewUrl ? (
                 <div className="space-y-2">
                   <img src={previewUrl} alt="Aperçu" className="max-h-48 mx-auto rounded shadow-sm object-contain" />
-                  <p className="text-blue-600 font-medium">Cliquer ou déposer pour changer de fichier</p>
+                  <p className="text-stone-900 font-medium">Cliquer ou déposer pour changer de fichier</p>
                 </div>
               ) : (
                 <div className="space-y-2">
@@ -381,7 +383,7 @@ export default function AdminDashboardClient({
             </div>
 
             {exifLoading && (
-              <p className="text-blue-600 text-xs italic text-center animate-pulse">
+              <p className="text-stone-600 text-xs italic text-center animate-pulse">
                 Extraction des métadonnées EXIF en cours...
               </p>
             )}
@@ -393,7 +395,7 @@ export default function AdminDashboardClient({
                   required
                   value={photoTitle}
                   onChange={(e) => setPhotoTitle(e.target.value)}
-                  className="w-full p-2.5 rounded border border-stone-300 text-sm"
+                  className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
                   placeholder="Ex: Coucher de soleil sur les cimes"
                 />
               </div>
@@ -402,7 +404,7 @@ export default function AdminDashboardClient({
                 <input
                   value={photoLocation}
                   onChange={(e) => setPhotoLocation(e.target.value)}
-                  className="w-full p-2.5 rounded border border-stone-300 text-sm"
+                  className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
                   placeholder="Ex: Lofoten, Norvège"
                 />
               </div>
@@ -414,7 +416,7 @@ export default function AdminDashboardClient({
               <select
                 value={selectedSeriesId}
                 onChange={(e) => setSelectedSeriesId(e.target.value)}
-                className="w-full p-2.5 rounded border border-stone-300 text-sm"
+                className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
               >
                 <option value="">Aucune série particulière</option>
                 {seriesList.map((s) => (
@@ -424,30 +426,56 @@ export default function AdminDashboardClient({
             </div>
 
             {/* Bloc EXIF (auto-rempli mais modifiable) */}
-            <div className="bg-stone-50 rounded-lg p-4 border border-stone-200/80 space-y-3">
+            <div className="bg-stone-50 rounded-xl p-4 border border-stone-200/80 space-y-3">
               <span className="font-semibold text-stone-800 flex items-center gap-1.5">
-                <Camera className="w-3.5 h-3.5 text-blue-600" />
+                <Camera className="w-3.5 h-3.5 text-stone-700" />
                 <span>Données EXIF Détectées (modifiables)</span>
               </span>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="text-stone-500 block mb-0.5">Boîtier</label>
-                  <input value={camera} onChange={(e) => setCamera(e.target.value)} className="w-full p-2 rounded border border-stone-300 text-xs" placeholder="Ex: Sony A7R V" />
+                  <input
+                    value={camera}
+                    onChange={(e) => setCamera(e.target.value)}
+                    className="w-full p-2 rounded-lg border border-stone-300 text-xs text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                    placeholder="Ex: Sony A7R V"
+                  />
                 </div>
                 <div>
                   <label className="text-stone-500 block mb-0.5">Objectif</label>
-                  <input value={lens} onChange={(e) => setLens(e.target.value)} className="w-full p-2 rounded border border-stone-300 text-xs" placeholder="Ex: FE 35mm f/1.4 GM" />
+                  <input
+                    value={lens}
+                    onChange={(e) => setLens(e.target.value)}
+                    className="w-full p-2 rounded-lg border border-stone-300 text-xs text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                    placeholder="Ex: FE 35mm f/1.4 GM"
+                  />
                 </div>
                 <div>
                   <label className="text-stone-500 block mb-0.5">Ouverture</label>
-                  <input value={aperture} onChange={(e) => setAperture(e.target.value)} className="w-full p-2 rounded border border-stone-300 text-xs" placeholder="Ex: f/2.8" />
+                  <input
+                    value={aperture}
+                    onChange={(e) => setAperture(e.target.value)}
+                    className="w-full p-2 rounded-lg border border-stone-300 text-xs font-mono text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                    placeholder="Ex: f/2.8"
+                  />
                 </div>
                 <div>
                   <label className="text-stone-500 block mb-0.5">Vitesse &amp; ISO</label>
                   <div className="grid grid-cols-2 gap-2">
-                    <input value={shutter} onChange={(e) => setShutter(e.target.value)} className="w-full p-2 rounded border border-stone-300 text-xs" placeholder="1/500s" />
-                    <input type="number" value={iso} onChange={(e) => setIso(Number(e.target.value) || '')} className="w-full p-2 rounded border border-stone-300 text-xs" placeholder="ISO 100" />
+                    <input
+                      value={shutter}
+                      onChange={(e) => setShutter(e.target.value)}
+                      className="w-full p-2 rounded-lg border border-stone-300 text-xs font-mono text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                      placeholder="1/500s"
+                    />
+                    <input
+                      type="number"
+                      value={iso}
+                      onChange={(e) => setIso(Number(e.target.value) || '')}
+                      className="w-full p-2 rounded-lg border border-stone-300 text-xs font-mono text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                      placeholder="ISO 100"
+                    />
                   </div>
                 </div>
               </div>
@@ -459,7 +487,7 @@ export default function AdminDashboardClient({
                 id="isFeaturedCb"
                 checked={isFeatured}
                 onChange={(e) => setIsFeatured(e.target.checked)}
-                className="w-4 h-4 rounded text-blue-600"
+                className="w-4 h-4 rounded text-stone-900 border-stone-300 focus:ring-stone-900"
               />
               <label htmlFor="isFeaturedCb" className="text-stone-700 font-medium">
                 Mettre ce cliché en coup de cœur sur la page d'accueil
@@ -469,7 +497,7 @@ export default function AdminDashboardClient({
             <button
               type="submit"
               disabled={uploading}
-              className="w-full py-3 rounded-lg bg-stone-950 hover:bg-stone-800 text-white font-medium text-xs transition-colors"
+              className="w-full py-3.5 rounded-xl bg-stone-950 hover:bg-stone-800 text-white font-medium text-xs transition-[transform,background-color] duration-150 hover:scale-[1.01] active:scale-95 disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-stone-950"
             >
               {uploading ? 'Enregistrement en cours...' : 'Publier le Cliché dans la Galerie'}
             </button>
@@ -480,51 +508,87 @@ export default function AdminDashboardClient({
       {/* CONTENU ONGLET 3 : GESTION DES RECETTES AVEC AVANT / APRÈS */}
       {activeTab === 'recipes' && (
         <div className="space-y-8">
-          <div className="max-w-2xl bg-white rounded-xl border border-stone-200 p-6 md:p-8 shadow-sm space-y-6">
+          <div className="max-w-2xl bg-white rounded-2xl border border-stone-200 p-6 md:p-8 shadow-sm space-y-6">
             <div>
-              <h2 className="font-editorial text-2xl font-medium">Créer une nouvelle recette</h2>
+              <h2 className="font-editorial text-2xl font-medium text-stone-950">Créer une nouvelle recette</h2>
               <p className="text-xs text-stone-500 pt-1">
-                Déposez simplement le cliché brut (Avant) et le cliché retouché (Après). Le composant comparateur se génère instantanément sur la boutique.
+                Déposez simplement le cliché brut (Avant) et le cliché retouché (Après). Le comparateur fluide sera immédiatement disponible sur la boutique.
               </p>
             </div>
 
             <form onSubmit={handleCreateRecipeSubmit} className="space-y-4 text-xs">
               <div>
                 <label className="block text-stone-700 font-medium mb-1">Nom de la recette *</label>
-                <input required value={recipeTitle} onChange={(e) => setRecipeTitle(e.target.value)} className="w-full p-2.5 rounded border border-stone-300 text-sm" placeholder="Ex: Tonalités Dorées & Brume" />
+                <input
+                  required
+                  value={recipeTitle}
+                  onChange={(e) => setRecipeTitle(e.target.value)}
+                  className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                  placeholder="Ex: Tonalités Dorées & Brume"
+                />
               </div>
 
               <div>
                 <label className="block text-stone-700 font-medium mb-1">Description éditoriale</label>
-                <textarea rows={2} value={recipeDesc} onChange={(e) => setRecipeDesc(e.target.value)} className="w-full p-2.5 rounded border border-stone-300 text-sm" placeholder="Expliquez à qui s'adresse ce preset et le rendu obtenu..." />
+                <textarea
+                  rows={2}
+                  value={recipeDesc}
+                  onChange={(e) => setRecipeDesc(e.target.value)}
+                  className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                  placeholder="Expliquez à qui s'adresse ce preset et le rendu obtenu..."
+                />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-stone-700 font-medium mb-1">Prix (€) *</label>
-                  <input required type="number" step="0.01" value={recipePrice} onChange={(e) => setRecipePrice(e.target.value)} className="w-full p-2.5 rounded border border-stone-300 text-sm" />
+                  <input
+                    required
+                    type="number"
+                    step="0.01"
+                    value={recipePrice}
+                    onChange={(e) => setRecipePrice(e.target.value)}
+                    className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                  />
                 </div>
                 <div>
                   <label className="block text-stone-700 font-medium mb-1">Lien Lemon Squeezy</label>
-                  <input value={recipeLemonUrl} onChange={(e) => setRecipeLemonUrl(e.target.value)} className="w-full p-2.5 rounded border border-stone-300 text-sm" placeholder="https://votre-boutique.lemonsqueezy.com/..." />
+                  <input
+                    value={recipeLemonUrl}
+                    onChange={(e) => setRecipeLemonUrl(e.target.value)}
+                    className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                    placeholder="https://votre-boutique.lemonsqueezy.com/..."
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div>
                   <label className="block text-stone-700 font-medium mb-1">URL Image AVANT (RAW brut) *</label>
-                  <input required value={recipeBeforeUrl} onChange={(e) => setRecipeBeforeUrl(e.target.value)} className="w-full p-2.5 rounded border border-stone-300 text-sm" placeholder="https://images.unsplash.com/..." />
+                  <input
+                    required
+                    value={recipeBeforeUrl}
+                    onChange={(e) => setRecipeBeforeUrl(e.target.value)}
+                    className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                    placeholder="https://images.unsplash.com/..."
+                  />
                 </div>
                 <div>
                   <label className="block text-stone-700 font-medium mb-1">URL Image APRÈS (Retouchée) *</label>
-                  <input required value={recipeAfterUrl} onChange={(e) => setRecipeAfterUrl(e.target.value)} className="w-full p-2.5 rounded border border-stone-300 text-sm" placeholder="https://images.unsplash.com/..." />
+                  <input
+                    required
+                    value={recipeAfterUrl}
+                    onChange={(e) => setRecipeAfterUrl(e.target.value)}
+                    className="w-full p-2.5 rounded-lg border border-stone-300 text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                    placeholder="https://images.unsplash.com/..."
+                  />
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={creatingRecipe}
-                className="w-full py-3 rounded-lg bg-stone-950 hover:bg-stone-800 text-white font-medium text-xs transition-colors"
+                className="w-full py-3.5 rounded-xl bg-stone-950 hover:bg-stone-800 text-white font-medium text-xs transition-[transform,background-color] duration-150 hover:scale-[1.01] active:scale-95 disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-stone-950"
               >
                 {creatingRecipe ? 'Création...' : 'Ajouter la Recette à la Boutique'}
               </button>
@@ -536,7 +600,7 @@ export default function AdminDashboardClient({
       {/* CONTENU ONGLET 4 : DEMANDES DE TIRAGES D'ART */}
       {activeTab === 'inquiries' && (
         <div className="space-y-4">
-          <h2 className="font-editorial text-xl font-medium">Demandes de tirages d'art reçues</h2>
+          <h2 className="font-editorial text-xl font-medium text-stone-950">Demandes de tirages d'art reçues</h2>
           {inquiriesList.length === 0 ? (
             <p className="text-xs text-stone-500 italic">Aucune demande de tirage pour le moment.</p>
           ) : (
@@ -548,13 +612,13 @@ export default function AdminDashboardClient({
                       <span className="font-semibold text-stone-900 text-sm">{item.clientName}</span>
                       <span className="text-stone-400 pl-2">({item.clientEmail})</span>
                     </div>
-                    <span className="px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-mono text-[10px]">
+                    <span className="px-2.5 py-0.5 rounded bg-stone-100 text-stone-800 font-mono text-[10px] border border-stone-200">
                       Format : {item.desiredSize}
                     </span>
                   </div>
                   <p className="text-stone-700">Cliché demandé : <strong>« {item.photoTitle} »</strong></p>
                   {item.message && (
-                    <p className="text-stone-600 bg-stone-50 p-2.5 rounded border border-stone-100 italic">
+                    <p className="text-stone-600 bg-stone-50 p-2.5 rounded-lg border border-stone-100 italic">
                       « {item.message} »
                     </p>
                   )}
