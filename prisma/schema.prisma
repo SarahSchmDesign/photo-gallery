@@ -1,0 +1,88 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Photo {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String?
+  imageUrl    String
+  thumbUrl    String?
+  width       Int      @default(1200)
+  height      Int      @default(800)
+  aspectRatio Float    @default(1.5)
+  blurDataUrl String?
+
+  // Données EXIF
+  camera      String?  // Ex: Sony A7 IV, Fujifilm X-T5
+  lens        String?  // Ex: 35mm f/1.4 GM
+  focalLength String?  // Ex: 35mm
+  aperture    String?  // Ex: f/2.0
+  shutter     String?  // Ex: 1/400s
+  iso         Int?     // Ex: 100
+  location    String?  // Ex: Dolomites, Italie
+  capturedAt  String?  // Date lisible
+
+  isFeatured  Boolean  @default(false)
+  order       Int      @default(0)
+  tags        String   @default("") // Comma-separated tags
+
+  seriesId    String?
+  series      Series?  @relation(fields: [seriesId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Series {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  subtitle    String?
+  statement   String?  // Note d'intention éditoriale
+  coverUrl    String?
+  order       Int      @default(0)
+  photos      Photo[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Recipe {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  description     String
+  price           Float    @default(19.0)
+  currency        String   @default("EUR")
+  lemonSqueezyUrl String?  // Lien de checkout
+
+  // Clichés comparatifs pour le curseur
+  beforeUrl       String   // Cliché brut RAW non traité
+  afterUrl        String   // Cliché développé avec la recette
+
+  software        String   @default("Adobe Lightroom (Classic & Mobile)")
+  includedFiles   String   @default("Fichiers .xmp, .dng et guide PDF")
+  isPublished     Boolean  @default(true)
+  order           Int      @default(0)
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model PrintInquiry {
+  id          String   @id @default(cuid())
+  photoSlug   String
+  photoTitle  String
+  clientName  String
+  clientEmail String
+  desiredSize String?
+  message     String
+  status      String   @default("pending") // pending, contacted, completed
+  createdAt   DateTime @default(now())
+}
