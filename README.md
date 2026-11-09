@@ -51,8 +51,8 @@ Pour mettre votre galerie en ligne gratuitement :
    - Source : `Deploy from a branch`
    - Branch : `main` / dossier `/ (root)`
    - Cliquez sur **Save**.
-4. Votre galerie sera accessible publiquement en quelques secondes à l'adresse :
-   `https://<votre-pseudo-github>.github.io/<nom-du-repo>/`
+4. Votre galerie est accessible publiquement en direct à l'adresse :
+   **[https://sarahschmdesign.github.io/photo-gallery/](https://sarahschmdesign.github.io/photo-gallery/)**
 
 ---
 
