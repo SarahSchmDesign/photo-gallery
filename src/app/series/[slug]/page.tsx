@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Sparkles } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
 import GalleryView from '@/components/GalleryView';
 
@@ -31,33 +31,35 @@ export default async function SeriesDetailPage({ params }: SeriesPageProps) {
   });
 
   return (
-    <div className="space-y-12 animate-fade-in">
+    <div className="space-y-16 animate-fade-in">
       {/* Retour navigation */}
       <Link
         href="/"
-        className="group inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 hover:text-stone-950 transition-colors outline-none focus-visible:ring-2 focus-visible:ring-stone-900 rounded-sm py-1"
+        className="group inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-[#736E69] hover:text-[#141312] transition-colors py-1"
       >
         <ArrowLeft className="w-3.5 h-3.5 transition-transform duration-150 group-hover:-translate-x-1" />
-        <span>Retour au portfolio</span>
+        <span>Retour aux archives</span>
       </Link>
 
-      {/* En-tête de la Série */}
-      <header className="max-w-3xl space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 text-stone-600 text-xs font-medium tracking-wide border border-stone-200/60">
-          <Sparkles className="w-3.5 h-3.5 text-stone-500" />
-          <span>Série &amp; Collection Documentée</span>
+      {/* En-tête de la Série en Instrument Serif */}
+      <header className="space-y-6 max-w-5xl border-b border-[rgba(20,19,18,0.1)] pb-12">
+        <div className="text-xs font-mono uppercase tracking-[0.25em] text-[#736E69]">
+          SÉRIE DOCUMENTÉE • SÉLECTION ORIGINALE
         </div>
-        <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-stone-950 leading-[1.12]">
+
+        <h1 className="font-instrument text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal leading-[0.92] tracking-tight text-[#141312]">
           {seriesItem.title}
         </h1>
+
         {seriesItem.subtitle && (
-          <p className="text-lg sm:text-xl text-stone-600 font-light italic">
-            {seriesItem.subtitle}
+          <p className="font-editorial-italic text-2xl sm:text-3xl md:text-4xl text-[#4A4643] font-normal">
+            « {seriesItem.subtitle} »
           </p>
         )}
+
         {seriesItem.statement && (
-          <div className="pt-2 border-l-2 border-stone-300 pl-4 text-sm sm:text-base text-stone-600 leading-relaxed italic">
-            « {seriesItem.statement} »
+          <div className="pt-2 pl-6 border-l border-[rgba(20,19,18,0.2)] text-base sm:text-lg text-[#736E69] font-light max-w-3xl leading-relaxed">
+            {seriesItem.statement}
           </div>
         )}
       </header>

@@ -11,16 +11,18 @@ module.exports = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         editorial: {
-          bg: "#FAFAF9", // warm stone
-          dark: "#121212",
-          accent: "#2563EB",
+          bg: "#FAF9F5", // warm albaster stone
+          dark: "#141312",
           muted: "#78716C",
           border: "#E7E5E4",
         }
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Playfair Display", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "Plus Jakarta Sans", "-apple-system", "sans-serif"],
+        serif: ["'Instrument Serif'", "Georgia", "serif"],
+        editorial: ["'Instrument Serif'", "Georgia", "serif"],
+        display: ["'Instrument Serif'", "Georgia", "serif"],
+        sans: ["'Plus Jakarta Sans'", "-apple-system", "sans-serif"],
+        mono: ["'JetBrains Mono'", "monospace"],
       }
     },
   },

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Camera, Send, Award, CheckCircle, Sparkles } from 'lucide-react';
+import { Camera, Send, Award, CheckCircle } from 'lucide-react';
 
 export default function AboutPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -40,146 +40,161 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-16 animate-fade-in">
-      {/* Bio / Démarche artistique */}
-      <section className="space-y-6">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 text-stone-600 text-xs font-medium tracking-wide border border-stone-200/60">
-          <Sparkles className="w-3.5 h-3.5 text-stone-500" />
-          <span>Démarche Artistique &amp; Biographie</span>
+    <div className="max-w-5xl mx-auto space-y-24 md:space-y-32 animate-fade-in">
+      {/* Bio / Démarche artistique en Instrument Serif */}
+      <section className="space-y-8 border-b border-[rgba(20,19,18,0.1)] pb-16">
+        <div className="text-xs font-mono uppercase tracking-[0.2em] text-[#736E69]">
+          À Propos • Sarah Schm.
         </div>
-        <h1 className="font-editorial text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-stone-950 leading-[1.12]">
-          Sarah — Capturer l’émotion pure de l’instant.
-        </h1>
-        <div className="prose text-stone-600 space-y-4 font-light text-base sm:text-lg leading-relaxed">
-          <p>
-            Photographe passionnée par la lumière naturelle et la pureté des lignes géométriques, je conçois la photographie comme un dialogue silencieux entre l'observateur et le monde.
-          </p>
-          <p>
-            Mes séries oscillent entre la solitude contemplative des paysages nordiques et le rythme vibrant des cités contemporaines. Chaque prise de vue est pensée dans un souci d'harmonie tonale, que je prolonge lors du développement numérique à travers des recettes de retouche méticuleusement calibrées.
-          </p>
-        </div>
-      </section>
 
-      {/* Matériel & Boîtiers (Unslop & Hallmark) */}
-      <section className="bg-stone-50 rounded-2xl p-8 border border-stone-200/70 space-y-5">
-        <h2 className="font-editorial text-2xl font-medium text-stone-900 flex items-center gap-2.5">
-          <Camera className="w-5 h-5 text-stone-700" />
-          <span>Dans mon sac photographique</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-stone-600">
-          <div className="space-y-1.5 p-4 rounded-xl bg-white border border-stone-200/50">
-            <p className="font-semibold text-stone-900 text-sm">Boîtiers principaux</p>
-            <p className="leading-relaxed">Sony A7R V (Plein format 61 MP) &amp; Fujifilm X-T5 (Capteur X-Trans V)</p>
-          </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-white border border-stone-200/50">
-            <p className="font-semibold text-stone-900 text-sm">Optiques de prédilection</p>
-            <p className="leading-relaxed">Sony FE 35mm f/1.4 GM, 50mm f/1.2 GM &amp; Fujinon 16mm f/1.4 R</p>
-          </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-white border border-stone-200/50">
-            <p className="font-semibold text-stone-900 text-sm">Développement &amp; Étalonnage</p>
-            <p className="leading-relaxed">Adobe Lightroom Classic calibré sur écran EIZO ColorEdge (espace DCI-P3 / Adobe RGB)</p>
-          </div>
-          <div className="space-y-1.5 p-4 rounded-xl bg-white border border-stone-200/50">
-            <p className="font-semibold text-stone-900 text-sm">Laboratoire de tirage d'art</p>
-            <p className="leading-relaxed">Papiers d'art Hahnemühle Photo Rag Baryta 315g, encres pigmentaires UltraChrome</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Formulaire de Tirages d'Art */}
-      <section className="border-t border-stone-200/80 pt-12 space-y-6">
-        <div>
-          <span className="text-xs uppercase tracking-widest text-stone-500 font-semibold flex items-center gap-1.5">
-            <Award className="w-3.5 h-3.5 text-stone-500" />
-            <span>Tirages d'Art Signés &amp; Numérotés</span>
+        <h1 className="font-instrument text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-normal leading-[0.92] tracking-tight text-[#141312]">
+          Capturer l’émotion pure <br />
+          <span className="font-editorial-italic font-normal text-[#4A4643]">
+            de l'instant suspendu.
           </span>
-          <h2 className="font-editorial text-3xl sm:text-4xl font-medium text-stone-950 pt-1.5">
-            Commander une épreuve d’exception
+        </h1>
+
+        <div className="prose text-[#4A4643] space-y-6 font-light text-base sm:text-lg md:text-xl leading-relaxed pt-4 max-w-3xl">
+          <p>
+            Photographe fascinée par la pureté des lignes géométriques et le murmure des paysages froids, je conçois la photographie comme un dialogue silencieux entre l'observateur et le monde.
+          </p>
+          <p>
+            Mes séries photographiques oscillent entre la solitude contemplative des côtes nordiques et la cadence nocturne des mégalopoles asiatiques. Chaque prise de vue obéit à une exigence d'harmonie tonale absolue, prolongée lors du développement numérique à travers des profils sur mesure.
+          </p>
+        </div>
+      </section>
+
+      {/* Matériel & Laboratoire */}
+      <section className="space-y-8">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#736E69] block mb-1">
+            Équipement &amp; Process
+          </span>
+          <h2 className="font-instrument text-3xl sm:text-4xl text-[#141312]">
+            Dans le Sac Photographique
           </h2>
-          <p className="text-stone-600 text-sm pt-1 leading-relaxed max-w-2xl">
-            Toutes les photographies du portfolio sont disponibles en tirages d'art numérotés, signés à la main et accompagnés de leur certificat d'authenticité infalsifiable.
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs font-mono">
+          <div className="space-y-2 p-6 bg-[#F4F1EB]/50 border border-[rgba(20,19,18,0.08)]">
+            <span className="text-[10px] uppercase tracking-widest text-[#736E69] block">01 / Boîtiers</span>
+            <p className="font-instrument text-2xl text-[#141312]">Sony A7R V &amp; Fujifilm X-T5</p>
+            <p className="text-[#736E69] font-sans text-xs pt-1">Capteur plein format 61 MP sans filtre passe-bas et matrice X-Trans V.</p>
+          </div>
+
+          <div className="space-y-2 p-6 bg-[#F4F1EB]/50 border border-[rgba(20,19,18,0.08)]">
+            <span className="text-[10px] uppercase tracking-widest text-[#736E69] block">02 / Optiques Fixes</span>
+            <p className="font-instrument text-2xl text-[#141312]">35mm f/1.4 GM &amp; 50mm f/1.2 GM</p>
+            <p className="text-[#736E69] font-sans text-xs pt-1">Verres apochromatiques et bokeh velouté à grande ouverture.</p>
+          </div>
+
+          <div className="space-y-2 p-6 bg-[#F4F1EB]/50 border border-[rgba(20,19,18,0.08)]">
+            <span className="text-[10px] uppercase tracking-widest text-[#736E69] block">03 / Étalonnage</span>
+            <p className="font-instrument text-2xl text-[#141312]">EIZO ColorEdge DCI-P3</p>
+            <p className="text-[#736E69] font-sans text-xs pt-1">Calibration matérielle mensuelle par sonde spectrophotométrique.</p>
+          </div>
+
+          <div className="space-y-2 p-6 bg-[#F4F1EB]/50 border border-[rgba(20,19,18,0.08)]">
+            <span className="text-[10px] uppercase tracking-widest text-[#736E69] block">04 / Tirages d'Art</span>
+            <p className="font-instrument text-2xl text-[#141312]">Hahnemühle Baryta 315g</p>
+            <p className="text-[#736E69] font-sans text-xs pt-1">Encres pigmentaires UltraChrome K3 avec longévité garantie plus de 100 ans.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Formulaire de Tirage Signé */}
+      <section className="border-t border-[rgba(20,19,18,0.1)] pt-16 space-y-8">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#736E69] block mb-1">
+            Commande Spéciale
+          </span>
+          <h2 className="font-instrument text-4xl sm:text-5xl text-[#141312]">
+            Acquérir une Épreuve Numérotée
+          </h2>
+          <p className="text-[#736E69] text-sm pt-2 max-w-xl leading-relaxed">
+            Chaque tirage est inspecté sous lumière normalisée 5000K, signé de la main de Sarah et délivré avec son certificat d'authenticité infalsifiable.
           </p>
         </div>
 
         {submitted ? (
-          <div className="bg-stone-50 border border-stone-200 rounded-2xl p-8 text-center space-y-3 animate-scale-in">
-            <CheckCircle className="w-8 h-8 text-stone-900 mx-auto" />
-            <h3 className="font-editorial text-2xl font-medium text-stone-950">
-              Merci pour votre demande
+          <div className="bg-[#F4F1EB] border border-[rgba(20,19,18,0.1)] p-12 text-center space-y-3 animate-scale-in">
+            <CheckCircle className="w-10 h-10 text-[#141312] mx-auto" />
+            <h3 className="font-instrument text-3xl text-[#141312]">
+              Demande Réceptionnée
             </h3>
-            <p className="text-sm text-stone-600 max-w-md mx-auto">
-              Sarah vous répondra personnellement sous 24h avec les options de tirage, les formats d'encadrement sur mesure et les délais d'expédition.
+            <p className="text-xs font-mono text-[#736E69] max-w-md mx-auto">
+              Sarah vous contactera personnellement sous 24h avec la proposition d'épreuve et les délais d'acheminement sécurisé.
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-5 max-w-xl text-xs">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl text-xs font-mono">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="clientName" className="block text-stone-700 mb-1 font-medium">Votre Nom *</label>
+                <label htmlFor="clientName" className="block text-[#4A4643] mb-1 uppercase tracking-wider text-[10px]">Nom complet *</label>
                 <input
                   id="clientName"
                   required
                   name="clientName"
-                  className="w-full p-3 rounded-lg border border-stone-300 bg-white text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 transition-colors"
+                  className="w-full p-3.5 border border-[rgba(20,19,18,0.2)] bg-white text-sm text-[#141312] outline-none focus:border-[#141312] transition-colors font-sans"
                   placeholder="Ex: Claire Martin"
                 />
               </div>
               <div>
-                <label htmlFor="clientEmail" className="block text-stone-700 mb-1 font-medium">Votre E-mail *</label>
+                <label htmlFor="clientEmail" className="block text-[#4A4643] mb-1 uppercase tracking-wider text-[10px]">E-mail de contact *</label>
                 <input
                   id="clientEmail"
                   required
                   type="email"
                   name="clientEmail"
-                  className="w-full p-3 rounded-lg border border-stone-300 bg-white text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 transition-colors"
+                  className="w-full p-3.5 border border-[rgba(20,19,18,0.2)] bg-white text-sm text-[#141312] outline-none focus:border-[#141312] transition-colors font-sans"
                   placeholder="claire@exemple.com"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="photoTitle" className="block text-stone-700 mb-1 font-medium">Titre du cliché souhaité</label>
+                <label htmlFor="photoTitle" className="block text-[#4A4643] mb-1 uppercase tracking-wider text-[10px]">Titre du cliché</label>
                 <input
                   id="photoTitle"
                   name="photoTitle"
-                  className="w-full p-3 rounded-lg border border-stone-300 bg-white text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 transition-colors"
+                  className="w-full p-3.5 border border-[rgba(20,19,18,0.2)] bg-white text-sm text-[#141312] outline-none focus:border-[#141312] transition-colors font-sans"
                   placeholder="Ex: Brume matinale sur les cimes"
                 />
               </div>
               <div>
-                <label htmlFor="desiredSize" className="block text-stone-700 mb-1 font-medium">Format souhaité</label>
+                <label htmlFor="desiredSize" className="block text-[#4A4643] mb-1 uppercase tracking-wider text-[10px]">Format souhaité</label>
                 <select
                   id="desiredSize"
                   name="desiredSize"
-                  className="w-full p-3 rounded-lg border border-stone-300 bg-white text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 transition-colors"
+                  className="w-full p-3.5 border border-[rgba(20,19,18,0.2)] bg-white text-sm text-[#141312] outline-none focus:border-[#141312] transition-colors font-sans"
                 >
-                  <option value="30x45 cm">30 x 45 cm (Papier d'art Baryté)</option>
-                  <option value="40x60 cm">40 x 60 cm (Tirage numéroté)</option>
-                  <option value="60x90 cm">60 x 90 cm (Grand format caisse américaine)</option>
-                  <option value="Sur mesure">Autre format sur mesure</option>
+                  <option value="30x45 cm">30 x 45 cm — Tirage Fine Art Papier Baryté</option>
+                  <option value="40x60 cm">40 x 60 cm — Épreuve numérotée sur Dibond</option>
+                  <option value="60x90 cm">60 x 90 cm — Grand format caisse américaine</option>
+                  <option value="Sur mesure">Format ou cadre sur mesure</option>
                 </select>
               </div>
             </div>
 
             <div>
-              <label htmlFor="message" className="block text-stone-700 mb-1 font-medium">Message ou précisions</label>
+              <label htmlFor="message" className="block text-[#4A4643] mb-1 uppercase tracking-wider text-[10px]">Message ou souhaits d'encadrement</label>
               <textarea
                 id="message"
                 name="message"
                 rows={4}
-                className="w-full p-3 rounded-lg border border-stone-300 bg-white text-sm text-stone-900 outline-none focus-visible:ring-2 focus-visible:ring-stone-900 transition-colors"
-                placeholder="Indiquez vos souhaits particuliers, lieu de livraison, encadrement..."
+                className="w-full p-3.5 border border-[rgba(20,19,18,0.2)] bg-white text-sm text-[#141312] outline-none focus:border-[#141312] transition-colors font-sans"
+                placeholder="Indiquez un lieu de livraison ou des spécifications particulières..."
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-stone-950 hover:bg-stone-800 text-white text-xs font-semibold uppercase tracking-wider transition-[transform,background-color] duration-150 hover:scale-[1.02] active:scale-95 disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-stone-950 focus-visible:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#141312] hover:bg-black text-[#FAF8F5] text-xs font-mono uppercase tracking-[0.2em] transition-colors disabled:opacity-50"
             >
               <Send className="w-3.5 h-3.5" />
-              <span>{loading ? 'Envoi en cours...' : 'Envoyer ma demande'}</span>
+              <span>{loading ? 'Envoi...' : 'Transmettre la demande'}</span>
             </button>
           </form>
         )}

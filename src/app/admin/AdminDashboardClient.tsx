@@ -201,16 +201,16 @@ export default function AdminDashboardClient({
       {/* Barre supérieure Admin */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-stone-200">
         <div>
-          <span className="text-[11px] uppercase tracking-widest text-stone-500 font-semibold">
-            Tableau de Bord
+          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#736E69] block mb-1">
+            Studio Photographe
           </span>
-          <h1 className="font-editorial text-3xl font-medium text-stone-950">
-            Espace Photographe
+          <h1 className="font-instrument text-4xl sm:text-5xl text-[#141312]">
+            Tableau de Bord
           </h1>
         </div>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs transition-colors outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+          className="flex items-center gap-1.5 px-4 py-2 bg-stone-100 hover:bg-stone-200 text-[#141312] text-xs font-mono uppercase tracking-wider transition-colors outline-none focus-visible:ring-1 focus-visible:ring-stone-900"
         >
           <LogOut className="w-3.5 h-3.5" />
           <span>Déconnexion</span>
