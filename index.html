@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina | Galerie Photo</title>
+  <meta name="description" content="Une galerie de photographies élégante, interactive et responsive avec mode sombre, filtres, recherche et visionneuse plein écran.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand-logo">
+        <span class="logo-symbol">✦</span>
+        <span class="logo-text">Lumina<span>.</span></span>
+      </a>
+
+      <div class="nav-actions">
+        <!-- Barre de recherche -->
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Rechercher par titre, tag, lieu..." autocomplete="off">
+          <button id="clearSearch" class="btn-clear" aria-label="Effacer" style="display:none;">&times;</button>
+        </div>
+
+        <!-- Bouton Ajouter Photo -->
+        <button id="openUploadBtn" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 5v14M5 12h14"/>
+          </svg>
+          <span>Ajouter</span>
+        </button>
+
+        <!-- Toggle Thème -->
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Changer de thème" title="Basculer clair/sombre">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <p class="hero-tagline">Portfolio &amp; Collection Visuelle</p>
+      <h1 class="hero-title">Capturer l'instant, révéler la lumière.</h1>
+      <p class="hero-subtitle">Explorez une sélection d'instantanés soigneusement choisis : paysages sauvages, lignes architecturales, portraits intimistes et scènes de voyage.</p>
+    </div>
+
+    <!-- Catégories / Filtres -->
+    <div class="filter-wrapper">
+      <div class="filter-bar" id="categoryFilters">
+        <button class="filter-pill active" data-category="all">Toutes <span class="counter" id="count-all">0</span></button>
+        <button class="filter-pill" data-category="nature">Nature <span class="counter" id="count-nature">0</span></button>
+        <button class="filter-pill" data-category="architecture">Architecture <span class="counter" id="count-architecture">0</span></button>
+        <button class="filter-pill" data-category="voyage">Voyages <span class="counter" id="count-voyage">0</span></button>
+        <button class="filter-pill" data-category="portrait">Portraits <span class="counter" id="count-portrait">0</span></button>
+        <button class="filter-pill" data-category="street">Street &amp; Vie <span class="counter" id="count-street">0</span></button>
+        <button class="filter-pill" data-category="favorites">Favoris ❤️ <span class="counter" id="count-favorites">0</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barre d'options de vue & stats -->
+  <section class="toolbar-section">
+    <div class="toolbar-container">
+      <span class="gallery-status" id="galleryStatus">Chargement des photos...</span>
+      <div class="view-toggles">
+        <button id="viewGrid" class="view-btn active" title="Grille Masonry">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+        </button>
+        <button id="viewSquare" class="view-btn" title="Grille Carrée">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie Principale -->
+  <main class="gallery-container">
+    <div id="galleryGrid" class="gallery-grid masonry-view"></div>
+
+    <!-- Message aucun résultat -->
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <div class="empty-icon">📷</div>
+      <h3>Aucune photo trouvée</h3>
+      <p>Essayez de modifier votre recherche ou sélectionnez une autre catégorie.</p>
+      <button id="resetFilterBtn" class="btn btn-secondary">Réinitialiser les filtres</button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p>© 2026 <strong>Lumina Gallery</strong> — Conçu avec passion.</p>
+      <div class="footer-links">
+        <button id="resetAllDataBtn" class="footer-action-link" title="Restaurer la galerie originale">Réinitialiser les données d'exemple</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox / Visionneuse Plein Écran -->
+  <div id="lightboxModal" class="lightbox-modal" aria-hidden="true" role="dialog">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    
+    <div class="lightbox-content">
+      <button class="lightbox-btn lb-close" id="lbClose" aria-label="Fermer (Échap)">&times;</button>
+      <button class="lightbox-btn lb-prev" id="lbPrev" aria-label="Photo précédente (Flèche gauche)">&#10094;</button>
+      <button class="lightbox-btn lb-next" id="lbNext" aria-label="Photo suivante (Flèche droite)">&#10095;</button>
+
+      <div class="lightbox-media-wrapper">
+        <img id="lbImage" class="lightbox-img" src="" alt="">
+        <div class="lightbox-spinner" id="lbSpinner"></div>
+      </div>
+
+      <!-- Métadonnées & actions de l'image -->
+      <div class="lightbox-details">
+        <div class="lb-header-info">
+          <div>
+            <h2 id="lbTitle" class="lb-title">Titre de la photo</h2>
+            <p id="lbMeta" class="lb-meta">Photographe &bull; Lieu &bull; Date</p>
+          </div>
+          <div class="lb-actions">
+            <button id="lbLikeBtn" class="btn-icon-round" title="Ajouter aux favoris">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+            <a id="lbDownloadBtn" href="" download class="btn-icon-round" target="_blank" title="Télécharger l'image" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p id="lbDesc" class="lb-description">Description détaillée de la prise de vue.</p>
+        <div id="lbTags" class="lb-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal : Ajouter une photo -->
+  <div id="uploadModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Ajouter une nouvelle photo</h3>
+        <button id="closeUploadModal" class="btn-clear">&times;</button>
+      </div>
+      <form id="uploadForm" class="modal-form">
+        <div class="form-group">
+          <label for="photoTitle">Titre de la photo *</label>
+          <input type="text" id="photoTitle" required placeholder="Ex: Coucher de soleil sur les Alpes">
+        </div>
+
+        <div class="form-group">
+          <label for="photoCategory">Catégorie *</label>
+          <select id="photoCategory" required>
+            <option value="nature">Nature &amp; Paysages</option>
+            <option value="architecture">Architecture</option>
+            <option value="voyage">Voyages</option>
+            <option value="portrait">Portraits</option>
+            <option value="street">Street &amp; Vie urbaine</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="photoUrl">URL de l'image ou Fichier local *</label>
+          <input type="url" id="photoUrl" placeholder="https://images.unsplash.com/...">
+          <div class="file-upload-divider">ou choisir un fichier depuis votre ordinateur :</div>
+          <input type="file" id="photoFile" accept="image/*">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="photoAuthor">Photographe / Auteur</label>
+            <input type="text" id="photoAuthor" placeholder="Votre nom ou pseudo">
+          </div>
+          <div class="form-group">
+            <label for="photoLocation">Lieu</label>
+            <input type="text" id="photoLocation" placeholder="Ex: Paris, France">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="photoTags">Tags (séparés par des virgules)</label>
+          <input type="text" id="photoTags" placeholder="montagne, neige, or, lumière">
+        </div>
+
+        <div class="form-group">
+          <label for="photoDescription">Description</label>
+          <textarea id="photoDescription" rows="2" placeholder="Quelques mots sur la prise de vue..."></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelUploadBtn" class="btn btn-secondary">Annuler</button>
+          <button type="submit" class="btn btn-primary">Publier dans la galerie</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/gallery-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
